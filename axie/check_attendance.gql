@@ -1,0 +1,17 @@
+# Using the AXIE contract address on ETH to see whether the the user has interacted with it or not.
+# If the count > 0, then the user played this game.
+
+# REPLACE THE txFrom field with player address.
+
+query MyQuery {
+  ethereum(network: ethereum) {
+    smartContractCalls(
+      smartContractAddress: {is: "0xf5b0a3efb8e8e4c201e2a935f110eaaf3ffecb8d"}
+      txFrom: {is: "REPLACE THIS WITH THE PLAYER ADDRESS"
+      # e.g. "0x445ba6F9f553872Fa9cDC14F5c0639365b39C140"
+      }
+    ) {
+      count
+    }
+  }
+}

@@ -1,0 +1,22 @@
+# Check dates of all trancsactions with AXIE contract on ETH. length of played time should be the deduction
+# of the dates.
+# Also this result can be used to determine the frequency of the play.
+
+# WARN: Since players now log into the game using the RONIN chain, this data may be incorrect.
+
+# REPLACE THE txFrom field with player address.
+
+query MyQuery {
+  ethereum(network: ethereum) {
+    smartContractCalls(
+      smartContractAddress: {is: "0xf5b0a3efb8e8e4c201e2a935f110eaaf3ffecb8d"}
+      txFrom: {is: "REPLACE THIS WITH THE PLAYER ADDRESS"
+      # e.g. "0x445ba6F9f553872Fa9cDC14F5c0639365b39C140"
+      }
+    ) {
+      date {
+        date
+      }
+    }
+  }
+}

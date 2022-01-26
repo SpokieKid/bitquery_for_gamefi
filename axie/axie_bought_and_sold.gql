@@ -1,0 +1,22 @@
+# The action of buying here at axie is better to be called bids made.
+# This query checks the number of bid made by a player.
+# Using the same query, we can see how many auctions the player has set, which can be regarded as
+# the action of selling.
+
+# REPLACE THE txFrom field with player address.
+
+query MyQuery {
+  ethereum(network: ethereum) {
+    smartContractCalls(
+      smartContractAddress: {is: "0xf4985070ce32b6b1994329df787d1acc9a2dd9e2"}
+      caller: {is: "REPLACE THIS WITH THE PLAYER ADDRESS"
+      #e.g. "0x445ba6F9f553872Fa9cDC14F5c0639365b39C140"
+      }
+    ) {
+      count
+      smartContractMethod {
+        name
+      }
+    }
+  }
+}
