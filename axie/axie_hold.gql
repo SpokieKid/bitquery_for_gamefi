@@ -4,9 +4,11 @@
 
 query MyQuery {
   ethereum(network: ethereum) {
-    address(address: {is: "0x445ba6F9f553872Fa9cDC14F5c0639365b39C140"}) {
-      balances(currency: {is: "REPLACE THIS WITH THE PLAYER ADDRESS"
-      # e.g. "0xf5b0a3efb8e8e4c201e2a935f110eaaf3ffecb8d"
+    address(address: {is: "REPLACE THIS WITH THE PLAYER ADDRESS"
+    #e.g. "0x445ba6F9f553872Fa9cDC14F5c0639365b39C140"
+    }) {
+      balances(currency: {is: "0xf5b0a3efb8e8e4c201e2a935f110eaaf3ffecb8d"
+      # this address is the axie token address
       }) {
         value
       }
