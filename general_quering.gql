@@ -44,3 +44,37 @@ query MyQuery {
     }
   }
 }
+
+# Query for how much USD a player has spent on buying the game token
+
+{
+  ethereum(network: bsc) {
+    dexTrades(
+      options: {desc: "tradeAmount"}
+      date: {after: "2022-02-10"} # Specify the date
+    ) {
+      transaction(txSender: {is: "0xa4b1345a4640ab63f1c3b4c606d305f03328fa10"}) { # Specify the player
+        hash
+      }
+      tradeIndex
+      date {
+        date
+      }
+      sellAmount # How much the user have bought
+      sellCurrency(sellCurrency: {is: "0x3203c9e46ca618c8c1ce5dc67e7e9d75f5da2377"}) { # The Token address, taken MBOX for example
+        symbol
+      }
+      sellAmountInUsd: sellAmount(in: USD)
+      tradeAmount(in: USD) # Total amount of Crypto token used to buy the Game token. Sample result: x BUSD
+      # Be aware that tradeAmount may not be the same to the one on BSCSCAN, error span +- $10
+    }
+  }
+}
+
+
+# If you want to check the code for selling, and stuggles to find a player's transaction,
+# you can use the player addresses from below:
+# MBOX: 0xa4b1345a4640ab63f1c3b4c606d305f03328fa10
+# Alien Worlds: 0x9a136a6649fbbc2a4f5e67245bde2b7dde260bcc
+# Bomb Crypto: 0x335528a6c6758fa33a7f855b179ef79440c91e55
+# META: 0xa457ea038728b1f7ea299ed31494fb2a4616d0c9
