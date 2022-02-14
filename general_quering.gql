@@ -78,3 +78,23 @@ query MyQuery {
 # Alien Worlds: 0x9a136a6649fbbc2a4f5e67245bde2b7dde260bcc
 # Bomb Crypto: 0x335528a6c6758fa33a7f855b179ef79440c91e55
 # META: 0xa457ea038728b1f7ea299ed31494fb2a4616d0c9
+
+
+# Query for how much USD a player has spent on buying the game token
+
+query MyQuery {
+  ethereum(network: bsc) {
+    dexTrades(buyCurrency: {is: "0x3203c9e46ca618c8c1ce5dc67e7e9d75f5da2377"}) { # Game token address
+      buyAmount
+      date {
+        date
+      }
+      transaction(txSender: {is: "0xf6a1bd84e3ad779a7f1f99ec5e10d14e570e2eb8"}) { # Player Address
+        hash
+      }
+      tradeAmount(in: USD)
+    }
+  }
+}
+
+# Should work across all 5 game platforms
